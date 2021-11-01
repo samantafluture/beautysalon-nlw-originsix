@@ -1,9 +1,6 @@
 /* abre e fecha menu */
 const nav = document.querySelector('#header nav');
 const toggle = document.querySelectorAll('nav .toggle');
-
-// para cada elemento do toggle -> cria um const element
-// adiciona um evento de click nos elements -> toggle classe show
 for (const element of toggle) {
     element.addEventListener('click', function () {
         nav.classList.toggle('show');
@@ -12,7 +9,6 @@ for (const element of toggle) {
 
 /* quando clicar em item do menu, esconder menu */
 const links = document.querySelectorAll('nav ul li a');
-
 for (const link of links) {
     link.addEventListener('click', function () {
         nav.classList.remove('show');
@@ -20,16 +16,15 @@ for (const link of links) {
 }
 
 /* aplicar sombra no header com scroll */
-const header = document.querySelector('#header');
-const navHeight = header.offsetHeight;
-
-window.addEventListener('scroll', function () {
-    if (this.window.scrollY >= navHeight) {
+function changeHeaderWhenScroll() {
+    const header = document.querySelector('#header');
+    const navHeight = header.offsetHeight;
+    if (window.scrollY >= navHeight) {
         header.classList.add('scroll');
     } else {
         header.classList.remove('scroll');
     }
-});
+}
 
 /* slider para os testimonials */
 const swiper = new Swiper('.swiper', {
@@ -48,12 +43,27 @@ const scrollReveal = ScrollReveal({
     duration: 700,
     reset: true
 });
-
 scrollReveal.reveal(
     `#home .image, #home .text, 
     #about .image, #about .text, 
     #services header, #services .card,
     #testimonials header, #testimonials .testimonials,
-    #contact .text, #contact .links`,
+    #contact .text, #contact .links
+    footer .brand, footer .social`,
     { delay: 100 }
 );
+
+/* back to top button */
+function backToTop() {
+    const backToTop = document.querySelector('.back-to-top');
+    if (this.window.scrollY >= 560) {
+        backToTop.classList.add('show');
+    } else {
+        backToTop.classList.remove('show');
+    }
+}
+
+window.addEventListener('scroll', function () {
+    changeHeaderWhenScroll();
+    backToTop();
+});

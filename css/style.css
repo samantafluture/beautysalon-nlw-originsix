@@ -182,12 +182,15 @@ nav ul li a::after {
     transition: width 0.2s;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
     color: var(--base-color);
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
     width: 100%;
+    font-weight: bold;
 }
 
 nav .menu {
@@ -624,4 +627,7 @@ footer .social a:hover {
     footer .section {
         padding: 3.75rem 0;
     }
+
+  
 }
+
